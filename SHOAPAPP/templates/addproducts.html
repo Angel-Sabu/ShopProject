@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD PRODUCTS PAGE</title>
+</head>
+<body>
+<div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">ADD PRODUCTS PAGE....!</h4>
+
+                  <form class="forms-sample" method="post" action="{% url 'productsavedata' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                    <div class="form-group">
+                    <label for="exampleFormControlSelect1">SelectCategory</label>
+                    <select class="form-control form-control-lg" id="exampleFormControlSelect1" name="CategoryName">
+                        <option>Select Category</option>
+                        {% for i in category %}
+                      <option>{{i.CategoryName}}</option>
+                        {% endfor %}
+
+
+                    </select>
+                  </div>
+                      <div class="form-group">
+
+                      <label for="exampleInputName1" >ProductName</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="ProductName" name="ProductName">
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" name="Description" placeholder="Description"></textarea>
+                    </div>
+                      <div class="form-group">
+
+                      <label for="exampleInputName1" >Price</label>
+                      <input type="number" class="form-control" id="exampleInputName1" placeholder="Price" name="Price">
+                    </div>
+
+                    <div class="mb-3">
+                                <label for="formFile" class="form-label">ProductImage</label>
+                                <input class="form-control " type="file" id="formFile" name="ProductImage">
+                            </div>
+                    <button type="submit" class="btn btn-success mr-2">Submit</button>
+                    <button class="btn btn-danger">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+        {% for i in messages %}
+            {% if i.tags == 'warning' %}
+                <script>
+                    swal('{{i}}', '' ,'warning');
+
+                </script>
+            {% elif i.tags == 'error' %}
+                <script>
+                     swal('{{i}}', '' ,'warning');
+                </script>
+            {% elif i.tags == 'success' %}
+                <script>
+                     swal('{{i}}','','success');
+                </script>
+            {% else %}
+                <script>
+                    swal('{{i}}','','info');
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
+{% endblock %}

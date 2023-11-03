@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DISPLAY PAGE</title>
+</head>
+<body>
+<div class="col-lg-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Contact DISPLAY PAGE.......!</h4>
+<!--                  <p class="card-description">-->
+<!--                    Add class <code>.table</code>-->
+<!--                  </p>-->
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>FirstName</th>
+                          <th>LastName</th>
+                          <th>Email</th>
+                          <th>Address</th>
+                          <th>City</th>
+                          <th>Country</th>
+                          <th>Mobile</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td>{{i.FirstName}}</td>
+                          <td>{{i.LastName}}</td>
+                          <td>{{i.Email}}</td>
+                          <td>{{i.Address}}</td>
+                          <td>{{i.City}}</td>
+                          <td>{{i.Country}}</td>
+                          <td>{{i.Mobile}}</td>
+
+
+<!--                           <td>-->
+<!--            <form action="{%url 'categoryeditpage' dataid=i.id %}">-->
+<!--                <button class="btn btn-success"> EDIT</button>-->
+<!--            </form>-->
+<!--        </td>-->
+<!--         <td>-->
+<!--            <form action="{%url 'deletecategory' dataid=i.id %}">-->
+<!--                <button class="btn btn-danger">DELETE</button>-->
+<!--            </form>-->
+
+                      {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DISPLAY PAGE</title>
+</head>
+<body>
+<div class="col-lg-10 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">CATEGORY DISPLAY PAGE.......!</h4>
+<!--                  <p class="card-description">-->
+<!--                    Add class <code>.table</code>-->
+<!--                  </p>-->
+                  <div class="table-responsive">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>CategoryName</th>
+                          <th>Description</th>
+                          <th>CategoryImage</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for i in data %}
+                        <tr>
+                          <td>{{i.CategoryName}}</td>
+                          <td>{{i.Description}}</td>
+
+                          <td>
+                               <img src="{{i.CategoryImage.url}}" width="100px" height="100px">
+                           </td>
+                           <td>
+            <form action="{%url 'categoryeditpage' dataid=i.id %}">
+                <button class="btn btn-success"> EDIT</button>
+            </form>
+        </td>
+         <td>
+            <form action="{%url 'deletecategory' dataid=i.id %}">
+                <button class="btn btn-danger">DELETE</button>
+            </form>
+
+                      {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+    {% if messages %}
+        {% for i in messages %}
+            {% if i.tags == 'warning' %}
+                <script>
+                    swal('{{i}}', '' ,'warning');
+
+                </script>
+            {% elif i.tags == 'error' %}
+                <script>
+                     swal('{{i}}', '' ,'warning');
+                </script>
+            {% elif i.tags == 'success' %}
+                <script>
+                     swal('{{i}}','','success');
+                </script>
+            {% else %}
+                <script>
+                    swal('{{i}}','','info');
+                </script>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</body>
+</html>
+
+{% endblock %}
